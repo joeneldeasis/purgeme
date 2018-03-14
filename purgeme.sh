@@ -4,7 +4,7 @@ GREEN="\033[0;32m"
 NC="\033[0m"
 USER=$(whoami)
 
-if [ $USER != "root" ]; then
+if [[ $USER != "root" ]]; then
 	echo "You must run this script as root!"
 	exit 1;
 fi
@@ -15,12 +15,12 @@ sleep 2
 rm -f /tmp/pmlogs.txt
 find /var/log -name \*.log >> /tmp/pmlogs.txt
 
-if [ $(which wipe) = "" ]; then
+if [[ $(which wipe) = "" ]]; then
 	if [[ "$(uname -a | grep -i ubuntu)" = *"ubuntu"* ]]; then
     	sudo apt-get update && sudo apt-get install wipe -y
 	elif [[ "$(uname -a | grep -i debian)" = *"debian"* ]]; then
     	sudo apt-get update && sudo apt-get install wipe -y
-    elif [[ "$(uname -a | grep -i centos)" = *"centos"* ]]; then
+    	elif [[ "$(uname -a | grep -i centos)" = *"centos"* ]]; then
     	yum install wipe -y
 	fi  
 fi
